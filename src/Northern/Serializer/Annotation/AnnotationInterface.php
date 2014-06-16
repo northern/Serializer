@@ -4,6 +4,7 @@ namespace Northern\Serializer\Annotation;
 
 interface AnnotationInterface {
 
-	public function getValue( \ReflectionProperty $property, $object );
+	public function getPropertyValue( \ReflectionProperty $property, $object );
+	public function getMethodValue( \ReflectionMethod $method, $object );
 
 }

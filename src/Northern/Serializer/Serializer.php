@@ -2,7 +2,8 @@
 
 namespace Northern\Serializer;
 
-use Doctrine\Common\Annotations;
+use Doctrine\Common\Annotations\AnnotationRegistry;
+use Doctrine\Common\Annotations\AnnotationReader;
 
 class Serializer {
 
@@ -13,22 +14,29 @@ class Serializer {
 
 	public function registerNamespace()
 	{
-		Annotations\AnnotationRegistry::registerAutoloadNamespace('Northern\Serializer\Annotation', realpath(__DIR__."/../..") );
+		AnnotationRegistry::registerAutoloadNamespace('Northern\Serializer\Annotation', realpath(__DIR__."/../..") );
 	}
 
 	public function toArray( $object )
 	{
 		$values = array();
 
+		$reader = new AnnotationReader();
+
 		$reflectionClass = new \ReflectionClass( $object );
 
 		$properties = $reflectionClass->getProperties();
-		//print_r( $properties );
+		$values = $values + $this->processObjectProperties( $reader, $object, $properties );
 
-		//$methods = $reflectionClass->getMethods();
-		//print_r( $methods );
+		$methods = $reflectionClass->getMethods();
+		$values = $values + $this->processObjectMethods( $reader, $object, $methods );
 
-		$reader = new Annotations\AnnotationReader();
+		return $values;
+	}
+
+	protected function processObjectProperties( AnnotationReader $reader, $object, array $properties )
+	{
+		$values = array();
 
 		foreach( $properties as $property )
 		{
@@ -43,14 +51,47 @@ class Serializer {
 			{
 				if( $annotation instanceof \Northern\Serializer\Annotation\AnnotationInterface )
 				{
-					$index = $annotation->name;
+					$name = $annotation->name;
 
-					if( empty( $index ) )
+					if( empty( $name ) )
 					{
-						$index = $property->name;
+						$name = $property->name;
 					}
 
-					$values[ $index ] = $annotation->getValue( $property, $object );
+					$values[ $name ] = $annotation->getPropertyValue( $property, $object );
+					break;
+				}
+			}
+		}
+
+		return $values;
+	}
+
+	protected function processObjectMethods( AnnotationReader $reader, $object, array $methods )
+	{
+		$values = array();
+
+		foreach( $methods as $method )
+		{
+			$annotations = $reader->getMethodAnnotations( $method );
+
+			if( empty( $annotations ) )
+			{
+				continue;
+			}
+
+			foreach( $annotations as $annotation )
+			{
+				if( $annotation instanceof \Northern\Serializer\Annotation\AnnotationInterface )
+				{
+					$name = $annotation->name;
+
+					if( empty( $name ) )
+					{
+						throw new \Exception("Annotation on method requires 'name' attribute.");
+					}
+
+					$values[ $name ] = $annotation->getMethodValue( $method, $object );
 					break;
 				}
 			}

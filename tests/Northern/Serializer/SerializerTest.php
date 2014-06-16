@@ -5,7 +5,31 @@ namespace Northern\Serializer;
 class TestClass {
 
 	/** @Annotation\String */
-	protected $prop = "Hello";
+	protected $stringProp = "abc";
+
+	/** @Annotation\Int */
+	protected $intProp = 123;
+
+	/** @Annotation\Integer */
+	protected $integerProp = 456;
+
+	/** @Annotation\String(name="stringValue") */
+	public function getStringValue()
+	{
+		return "xyz";
+	}
+
+	/** @Annotation\Int(name="intValue") */
+	public function getSomeIntValue()
+	{
+		return 123;
+	}
+
+	/** @Annotation\Integer(name="integerValue") */
+	public function getSomeIntegerValue()
+	{
+		return 456;
+	}
 
 }
 
@@ -18,8 +42,15 @@ class SerializerTest extends \PHPUnit_Framework_TestCase {
 		$test = new TestClass();
 		
 		$data = $serializer->toArray( $test );
-		print_r( $data );
+		//print_r( $data );
 
+		$this->assertEquals( $data['stringProp'], "abc" );
+		$this->assertEquals( $data['intProp'], 123 );
+		$this->assertEquals( $data['integerProp'], 456 );
+
+		$this->assertEquals( $data['stringValue'], 'xyz' );
+		$this->assertEquals( $data['intValue'], 123 );
+		$this->assertEquals( $data['integerValue'], 456 );
 	}
 
 }
