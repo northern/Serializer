@@ -3,7 +3,6 @@
 namespace Northern\Serializer\Annotation;
 
 /** @Annotation */
-final class Integer extends Int {
-
+final class Boolean extends Bool implements AnnotationInterface {
 
 }

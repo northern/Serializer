@@ -13,6 +13,9 @@ class TestClass {
 	/** @Annotation\Integer */
 	protected $integerProp = 456;
 
+	/** @Annotation\Bool */
+	protected $boolProp = true;
+
 	/** @Annotation\String(name="stringValue") */
 	public function getStringValue()
 	{
@@ -29,6 +32,12 @@ class TestClass {
 	public function getSomeIntegerValue()
 	{
 		return 456;
+	}
+
+	/** @Annotation\Bool(name="boolValue") */
+	public function getBoolValue()
+	{
+		return true;
 	}
 
 }
@@ -51,6 +60,9 @@ class SerializerTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals( $data['stringValue'], 'xyz' );
 		$this->assertEquals( $data['intValue'], 123 );
 		$this->assertEquals( $data['integerValue'], 456 );
+
+		$json = $serializer->toJson( $test );
+		print_r( $json );
 	}
 
 }

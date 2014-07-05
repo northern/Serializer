@@ -5,6 +5,8 @@ namespace Northern\Serializer;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 use Doctrine\Common\Annotations\AnnotationReader;
 
+use Northern\Serializer\Annotation;
+
 class Serializer {
 
 	public function __construct()
@@ -34,6 +36,11 @@ class Serializer {
 		return $values;
 	}
 
+	public function toJson( $object )
+	{
+		return json_encode( $this->toArray( $object ) );
+	}
+
 	protected function processObjectProperties( AnnotationReader $reader, $object, array $properties )
 	{
 		$values = array();
@@ -49,7 +56,7 @@ class Serializer {
 
 			foreach( $annotations as $annotation )
 			{
-				if( $annotation instanceof \Northern\Serializer\Annotation\AnnotationInterface )
+				if( $annotation instanceof Annotation\AnnotationInterface )
 				{
 					$name = $annotation->name;
 
@@ -82,7 +89,7 @@ class Serializer {
 
 			foreach( $annotations as $annotation )
 			{
-				if( $annotation instanceof \Northern\Serializer\Annotation\AnnotationInterface )
+				if( $annotation instanceof Annotation\AnnotationInterface )
 				{
 					$name = $annotation->name;
 
