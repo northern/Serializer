@@ -5,7 +5,32 @@ namespace Northern\Serializer;
 use Northern\Serializer\Serializer;
 use Northern\Serializer\Annotation as Serialize;
 
+class BazClass {
+
+	/** @Serialize\Int */
+	protected $bazNum = 1234321;
+
+}
+
+class BarClass {
+
+	/** @Serialize\String */
+	protected $barString = "xyz";
+
+	/** @Serialize\Object */
+	protected $baz;
+
+	public function __construct()
+	{
+		$this->baz = new BazClass();
+	}
+
+}
+
 class FooClass {
+
+	/** @Serialize\Object */
+	protected $bar;
 
 	/** @Serialize\String */
 	protected $stringProp = "abc";
@@ -18,6 +43,11 @@ class FooClass {
 
 	/** @Serialize\Bool(name="myBoolProp") */
 	protected $boolProp = true;
+
+	public function __construct()
+	{
+		$this->bar = new BarClass();
+	}
 
 	/** @Serialize\String(name="stringValue") */
 	public function getStringValue()
@@ -64,7 +94,7 @@ class SerializerTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals( $data['intValue'], 123 );
 		$this->assertEquals( $data['integerValue'], 456 );
 
-		$json = $serializer->toJson( $test );
+		//$json = $serializer->toJson( $test );
 		//print_r( $json );
 	}
 

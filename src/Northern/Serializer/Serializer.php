@@ -76,7 +76,17 @@ class Serializer {
 						$name = $property->name;
 					}
 
-					$values[ $name ] = $annotation->getPropertyValue( $property, $object );
+					$value = $annotation->getPropertyValue( $property, $object );
+
+					if( $annotation instanceof Annotation\Object )
+					{
+						$values[ $name ] = $this->toArray( $value );
+					}
+					else
+					{
+						$values[ $name ] = $value;
+					}
+
 					break;
 				}
 			}
