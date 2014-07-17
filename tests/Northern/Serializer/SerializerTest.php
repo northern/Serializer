@@ -94,7 +94,7 @@ class SerializerTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals( $data['intValue'], 123 );
 		$this->assertEquals( $data['integerValue'], 456 );
 
-		//$json = $serializer->toJson( $test );
+		$json = $serializer->toJson( $test );
 		//print_r( $json );
 	}
 

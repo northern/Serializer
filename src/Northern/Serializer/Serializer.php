@@ -9,23 +9,28 @@ use Northern\Serializer\Annotation;
 
 class Serializer {
 
-	protected static $initialized = FALSE;
+	protected static $initialized;
+
+	protected static $annotationReader;
 
 	public function __construct()
 	{
 		$this->registerNamespace();
 	}
 
+	/**
+	 * This method registers the required namespace with the Doctrine annotation library.
+	 */
 	public function registerNamespace()
 	{
-		if( ! static::$initialized )
+		if( empty( static::$initialized ) )
 		{
-			AnnotationRegistry::registerAutoloadNamespace('Northern\Serializer\Annotation', realpath(__DIR__."/../..") );
+			AnnotationRegistry::registerAutoloadNamespace( __NAMESPACE__.'\Annotation', realpath(__DIR__."/../..") );
 		}
 	}
 
 	/**
-	 * This method returns a serialized array of a given object.
+	 * This method returns a serialized PHP array of a given object.
 	 *
 	 * @param mixed $object
 	 * @return array
@@ -34,7 +39,12 @@ class Serializer {
 	{
 		$values = array();
 
-		$reader = new AnnotationReader();
+		if( empty( static::$annotationReader ) )
+		{
+			static::$annotationReader = new AnnotationReader();
+		}
+
+		$reader = static::$annotationReader;
 
 		$reflectionClass = new \ReflectionClass( $object );
 

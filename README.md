@@ -10,7 +10,7 @@ To generate code coverage reports:
 
     vendor/bin/phpunit --coverage-html ./reports
 
-Find Northern\Serializer on [Packagist](http://www.packagist.com/[todo]
+Find Northern\Serializer on [Packagist](http://www.packagist.com/[todo])
 
 ## Installation
 
@@ -30,7 +30,7 @@ You can now instantiate and run the serializer on any object:
 
     $array = $serializer->toArray( $someObject );
 
-However, without having annotated `$someObject`, nothing will be serialized. Let's annotate the class of which `$someObject` is an instance:
+However, without having annotated `$someObject`'s class, nothing will be serialized. Let's annotate the class of which `$someObject` is an instance:
 
     use Northern\Serializer\Annotation as Serialize;
 
