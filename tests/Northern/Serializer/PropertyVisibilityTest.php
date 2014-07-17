@@ -2,6 +2,7 @@
 
 namespace Northern\Serializer;
 
+use Northern\Serializer\Serializer;
 use Northern\Serializer\Annotation as Serialize;
 
 class PropertyVisibilityTestClass {

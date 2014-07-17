@@ -2,39 +2,42 @@
 
 namespace Northern\Serializer;
 
-class TestClass {
+use Northern\Serializer\Serializer;
+use Northern\Serializer\Annotation as Serialize;
 
-	/** @Annotation\String */
+class FooClass {
+
+	/** @Serialize\String */
 	protected $stringProp = "abc";
 
-	/** @Annotation\Int */
+	/** @Serialize\Int */
 	protected $intProp = 123;
 
-	/** @Annotation\Integer */
+	/** @Serialize\Integer */
 	protected $integerProp = 456;
 
-	/** @Annotation\Bool */
+	/** @Serialize\Bool(name="myBoolProp") */
 	protected $boolProp = true;
 
-	/** @Annotation\String(name="stringValue") */
+	/** @Serialize\String(name="stringValue") */
 	public function getStringValue()
 	{
 		return "xyz";
 	}
 
-	/** @Annotation\Int(name="intValue") */
+	/** @Serialize\Int(name="intValue") */
 	public function getSomeIntValue()
 	{
 		return 123;
 	}
 
-	/** @Annotation\Integer(name="integerValue") */
+	/** @Serialize\Integer(name="integerValue") */
 	public function getSomeIntegerValue()
 	{
 		return 456;
 	}
 
-	/** @Annotation\Bool(name="boolValue") */
+	/** @Serialize\Bool(name="boolValue") */
 	public function getBoolValue()
 	{
 		return true;
@@ -46,10 +49,10 @@ class SerializerTest extends \PHPUnit_Framework_TestCase {
 
 	public function testSerialize()
 	{
+		$test = new FooClass();
+		
 		$serializer = new Serializer();
 
-		$test = new TestClass();
-		
 		$data = $serializer->toArray( $test );
 		//print_r( $data );
 
@@ -62,7 +65,7 @@ class SerializerTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals( $data['integerValue'], 456 );
 
 		$json = $serializer->toJson( $test );
-		print_r( $json );
+		//print_r( $json );
 	}
 
 }

@@ -9,6 +9,8 @@ use Northern\Serializer\Annotation;
 
 class Serializer {
 
+	protected static $initialized = FALSE;
+
 	public function __construct()
 	{
 		$this->registerNamespace();
@@ -16,9 +18,18 @@ class Serializer {
 
 	public function registerNamespace()
 	{
-		AnnotationRegistry::registerAutoloadNamespace('Northern\Serializer\Annotation', realpath(__DIR__."/../..") );
+		if( ! static::$initialized )
+		{
+			AnnotationRegistry::registerAutoloadNamespace('Northern\Serializer\Annotation', realpath(__DIR__."/../..") );
+		}
 	}
 
+	/**
+	 * This method returns a serialized array of a given object.
+	 *
+	 * @param mixed $object
+	 * @return array
+	 */
 	public function toArray( $object )
 	{
 		$values = array();
@@ -95,7 +106,7 @@ class Serializer {
 
 					if( empty( $name ) )
 					{
-						throw new \Exception("Annotation on method requires 'name' attribute.");
+						throw new Exception\MissingAnnotationAttributeOnMethodException( 'name', $method );
 					}
 
 					$values[ $name ] = $annotation->getMethodValue( $method, $object );
