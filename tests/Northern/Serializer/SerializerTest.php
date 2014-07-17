@@ -32,6 +32,9 @@ class FooClass {
 	/** @Serialize\Object */
 	protected $bar;
 
+	/** @Serialize\Collection */
+	protected $barArray;
+
 	/** @Serialize\String */
 	protected $stringProp = "abc";
 
@@ -47,6 +50,12 @@ class FooClass {
 	public function __construct()
 	{
 		$this->bar = new BarClass();
+
+		$this->barArray = array(
+			new BarClass(),
+			new BarClass(),
+			new BarClass(),
+		);
 	}
 
 	/** @Serialize\String(name="stringValue") */

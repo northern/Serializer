@@ -93,6 +93,16 @@ class Serializer {
 						$values[ $name ] = $this->toArray( $value );
 					}
 					else
+					if( $annotation instanceof Annotation\Collection )
+					{
+						$collection = $value;
+
+						foreach( $collection as $item )
+						{
+							$values[ $name ][] = $this->toArray( $item );
+						}
+					}
+					else
 					{
 						$values[ $name ] = $value;
 					}
