@@ -7,7 +7,7 @@ use Northern\Serializer\Annotation as Serialize;
 
 class MissingAnnotationTest {
 
-	/** @Serialize\Int */  // <- This should have a (name="publicBar") attribute set on the annotation.
+	/** @Serialize\Int */  // <- This should have a (name="[name]") attribute set on the annotation.
 	public function getPublicBar()
 	{
 		return 1;
