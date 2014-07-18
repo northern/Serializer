@@ -82,6 +82,12 @@ class FooClass {
 		return true;
 	}
 
+	/** @Serialize\Bool */
+	public function isBoolValue()
+	{
+		return true;
+	}
+
 }
 
 class SerializerTest extends \PHPUnit_Framework_TestCase {

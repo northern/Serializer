@@ -136,7 +136,7 @@ class Serializer {
 
 					if( empty( $name ) )
 					{
-						throw new Exception\MissingAnnotationAttributeOnMethodException( 'name', $method );
+						$name = $method->name;
 					}
 
 					$values[ $name ] = $annotation->getMethodValue( $method, $object );
