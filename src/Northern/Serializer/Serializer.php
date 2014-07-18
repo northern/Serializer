@@ -99,7 +99,14 @@ class Serializer {
 
 						foreach( $collection as $item )
 						{
-							$values[ $name ][] = $this->toArray( $item );
+							if( is_object( $item ) )
+							{
+								$values[ $name ][] = $this->toArray( $item );
+							}
+							else
+							{
+								$values[ $name ][] = $item;
+							}
 						}
 					}
 					else
@@ -139,7 +146,9 @@ class Serializer {
 						$name = $method->name;
 					}
 
-					$values[ $name ] = $annotation->getMethodValue( $method, $object );
+					$value = $annotation->getMethodValue( $method, $object );
+
+					$values[ $name ] = $value;
 					break;
 				}
 			}

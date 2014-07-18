@@ -47,6 +47,9 @@ class FooClass {
 	/** @Serialize\Bool(name="myBoolProp") */
 	protected $boolProp = true;
 
+	/** @Serialize\Collection */
+	protected $myCollection = array(1,2,3);
+
 	public function __construct()
 	{
 		$this->bar = new BarClass();
@@ -99,7 +102,7 @@ class SerializerTest extends \PHPUnit_Framework_TestCase {
 		$serializer = new Serializer();
 
 		$data = $serializer->toArray( $test );
-		//print_r( $data );
+		print_r( $data );
 
 		$this->assertEquals( $data['stringProp'], "abc" );
 		$this->assertEquals( $data['intProp'], 123 );
