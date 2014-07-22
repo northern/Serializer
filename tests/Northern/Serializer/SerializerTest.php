@@ -50,6 +50,8 @@ class FooClass {
 	/** @Serialize\Collection */
 	protected $myCollection = array(1,2,3);
 
+	protected $noneSerialize;
+
 	public function __construct()
 	{
 		$this->bar = new BarClass();
