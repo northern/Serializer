@@ -1,6 +1,6 @@
 # Serializer
 
-Serializer is a small PHP library that allows you to annotate your POPO's and serialize them into a plain PHP array.
+Northern\Serializer is a small PHP library that allows you to annotate your POPO's and serialize them into a plain PHP array.
 
 To run the tests:
 
@@ -30,7 +30,7 @@ To use Northern\Serializer you need to import it:
 use Northern\Serializer\Serializer;
 ```
 
-You can now instantiate and run the serializer on any object:
+You can now instantiate and run the serializer on any PHP object:
 
 ```PHP
 $serializer = new Serializer();
@@ -106,3 +106,39 @@ Array(
   [isValid] => 1
 )
 ```
+
+Serializing properties and methods are of course very handy but what about a nested object? Can do too:
+
+```PHP
+class BarClass {
+	
+	/** @Serialize\Int */
+	protected $barValue = 123;
+
+}
+
+class FooClass {
+
+  /** @Serialize\Object */
+  protected $bar;
+
+  public function __construct()
+  {
+    $this->bar = new BarClass();
+  }
+
+}
+```
+
+Notice the `Serialize\Object` annotation? Be careful with recursive references!
+
+## Reference
+
+These are the available serialization types:
+
+Type | Description
+- | -
+`Serialize\Bool` | Serializes a boolean value.
+`Serialize\Int` | Serializes an integer value.
+`Serialize\Object` | Serializes an object. Indicates recursion.
+`Serialize\Collection` | Serializes an iterable, e.g. an array of objects.

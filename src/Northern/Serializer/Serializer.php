@@ -68,6 +68,7 @@ class Serializer {
 
 		foreach( $properties as $property )
 		{
+			// Get the annotation for this property.
 			$annotations = $reader->getPropertyAnnotations( $property );
 
 			if( empty( $annotations ) )
@@ -77,37 +78,51 @@ class Serializer {
 
 			foreach( $annotations as $annotation )
 			{
-				if( $annotation instanceof Annotation\AnnotationInterface )
+				// Check if the annotation is parseble, if not, get the next one.
+				if( ! $annotation instanceof Annotation\AnnotationInterface )
 				{
-					$name = $annotation->name;
+					continue;
+				}
 
-					if( empty( $name ) )
+				// If the annotation has a 'name' attribute then use that, otherwise
+				// use the property name (class member) as the value key.
+				$name = $annotation->name;
+
+				if( empty( $name ) )
+				{
+					$name = $property->name;
+				}
+
+				// Get the value of the property.
+				$value = $annotation->getPropertyValue( $property, $object );
+
+				if( $annotation instanceof Annotation\Object )
+				{
+					// If $value is an object then recurse into it.
+					$values[ $name ] = $this->toArray( $value );
+				}
+				else
+				if( $annotation instanceof Annotation\Collection )
+				{
+					// $value is a collection, iterate through it.
+					foreach( $value as $item )
 					{
-						$name = $property->name;
-					}
-
-					$value = $annotation->getPropertyValue( $property, $object );
-
-					if( $annotation instanceof Annotation\Object )
-					{
-						$values[ $name ] = $this->toArray( $value );
-					}
-					else
-					if( $annotation instanceof Annotation\Collection )
-					{
-						$collection = $value;
-
-						foreach( $collection as $item )
+						if( is_object( $item ) )
 						{
+							// If the item is an object then we want to recurse into it.
 							$values[ $name ][] = $this->toArray( $item );
 						}
+						else
+						{
+							// Other wise just add the $item value.
+							$values[ $name ][] = $item;
+						}
 					}
-					else
-					{
-						$values[ $name ] = $value;
-					}
-
-					break;
+				}
+				else
+				{
+					// $value is just a simple value.
+					$values[ $name ] = $value;
 				}
 			}
 		}
@@ -121,6 +136,7 @@ class Serializer {
 
 		foreach( $methods as $method )
 		{
+			// Get the annotations for this method.
 			$annotations = $reader->getMethodAnnotations( $method );
 
 			if( empty( $annotations ) )
@@ -130,18 +146,23 @@ class Serializer {
 
 			foreach( $annotations as $annotation )
 			{
-				if( $annotation instanceof Annotation\AnnotationInterface )
+				// Check if the annotation is parseble, if not, get the next one.
+				if( ! $annotation instanceof Annotation\AnnotationInterface )
 				{
-					$name = $annotation->name;
-
-					if( empty( $name ) )
-					{
-						$name = $method->name;
-					}
-
-					$values[ $name ] = $annotation->getMethodValue( $method, $object );
-					break;
+					continue;
 				}
+
+				// If the annotation has a 'name' attribute then use that, otherwise
+				// use the class method name as the value key.
+				$name = $annotation->name;
+
+				if( empty( $name ) )
+				{
+					$name = $method->name;
+				}
+
+				// Get the value of the property.
+				$values[ $name ] = $annotation->getMethodValue( $method, $object );
 			}
 		}
 
