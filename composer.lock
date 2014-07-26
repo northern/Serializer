@@ -4,23 +4,188 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7c6b3e8c11632ddb90432af8ac2b4e96",
+    "hash": "3232d33409ff830a00104d24af4a9b81",
     "packages": [
-
+        {
+            "name": "doctrine/annotations",
+            "version": "v1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/annotations.git",
+                "reference": "d9b1a37e9351ddde1f19f09a02e3d6ee92e82efd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/annotations/zipball/d9b1a37e9351ddde1f19f09a02e3d6ee92e82efd",
+                "reference": "d9b1a37e9351ddde1f19f09a02e3d6ee92e82efd",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/lexer": "1.*",
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "doctrine/cache": "1.*",
+                "phpunit/phpunit": "4.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Doctrine\\Common\\Annotations\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com",
+                    "homepage": "http://www.jwage.com/",
+                    "role": "Creator"
+                },
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com",
+                    "homepage": "http://www.instaclick.com"
+                },
+                {
+                    "name": "Roman Borschel",
+                    "email": "roman@code-factory.org"
+                },
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de"
+                },
+                {
+                    "name": "Johannes Schmitt",
+                    "email": "schmittjoh@gmail.com",
+                    "homepage": "http://jmsyst.com",
+                    "role": "Developer of wrapped JMSSerializerBundle"
+                }
+            ],
+            "description": "Docblock Annotations Parser",
+            "homepage": "http://www.doctrine-project.org",
+            "keywords": [
+                "annotations",
+                "docblock",
+                "parser"
+            ],
+            "time": "2014-07-06 15:52:21"
+        },
+        {
+            "name": "doctrine/lexer",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/lexer.git",
+                "reference": "2f708a85bb3aab5d99dab8be435abd73e0b18acb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/lexer/zipball/2f708a85bb3aab5d99dab8be435abd73e0b18acb",
+                "reference": "2f708a85bb3aab5d99dab8be435abd73e0b18acb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Doctrine\\Common\\Lexer\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com",
+                    "homepage": "http://www.instaclick.com"
+                },
+                {
+                    "name": "Roman Borschel",
+                    "email": "roman@code-factory.org"
+                },
+                {
+                    "name": "Johannes Schmitt",
+                    "email": "schmittjoh@gmail.com",
+                    "homepage": "http://jmsyst.com",
+                    "role": "Developer of wrapped JMSSerializerBundle"
+                }
+            ],
+            "description": "Base library for a lexer that can be used in Top-Down, Recursive Descent Parsers.",
+            "homepage": "http://www.doctrine-project.org",
+            "keywords": [
+                "lexer",
+                "parser"
+            ],
+            "time": "2013-01-12 18:59:04"
+        },
+        {
+            "name": "northern/common",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/northern/PHP-Common.git",
+                "reference": "23970322d4a6772e6413a87ed13f0e7e35870c92"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/northern/PHP-Common/zipball/23970322d4a6772e6413a87ed13f0e7e35870c92",
+                "reference": "23970322d4a6772e6413a87ed13f0e7e35870c92",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Northern\\": [
+                        "src/",
+                        "tests/src/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "gpl"
+            ],
+            "description": "PHP Helpers.",
+            "keywords": [
+                "common",
+                "helpers",
+                "northern"
+            ],
+            "time": "2014-05-10 23:41:41"
+        }
     ],
     "packages-dev": [
         {
             "name": "phpunit/php-code-coverage",
-            "version": "2.0.8",
+            "version": "2.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "58401826c8cfc8fd689b60026e91c337df374bca"
+                "reference": "ed8ac99ce38c3fd134128c898f7ca74665abef7f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/58401826c8cfc8fd689b60026e91c337df374bca",
-                "reference": "58401826c8cfc8fd689b60026e91c337df374bca",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/ed8ac99ce38c3fd134128c898f7ca74665abef7f",
+                "reference": "ed8ac99ce38c3fd134128c898f7ca74665abef7f",
                 "shasum": ""
             },
             "require": {
@@ -72,7 +237,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-05-26 14:55:24"
+            "time": "2014-06-29 08:14:40"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -259,16 +424,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.1.3",
+            "version": "4.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "939cb801b3b2aa253aedd0b279f40bb8f35cec91"
+                "reference": "a71c4842c5fb836d8b200624583b859ec34e8a26"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/939cb801b3b2aa253aedd0b279f40bb8f35cec91",
-                "reference": "939cb801b3b2aa253aedd0b279f40bb8f35cec91",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/a71c4842c5fb836d8b200624583b859ec34e8a26",
+                "reference": "a71c4842c5fb836d8b200624583b859ec34e8a26",
                 "shasum": ""
             },
             "require": {
@@ -329,20 +494,20 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-06-11 14:15:47"
+            "time": "2014-07-18 07:15:58"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
-            "version": "2.1.4",
+            "version": "2.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "1a894a16b6c15fcdc5ef2b110f0e6233952c9b0f"
+                "reference": "7878b9c41edb3afab92b85edf5f0981014a2713a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/1a894a16b6c15fcdc5ef2b110f0e6233952c9b0f",
-                "reference": "1a894a16b6c15fcdc5ef2b110f0e6233952c9b0f",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/7878b9c41edb3afab92b85edf5f0981014a2713a",
+                "reference": "7878b9c41edb3afab92b85edf5f0981014a2713a",
                 "shasum": ""
             },
             "require": {
@@ -386,7 +551,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2014-06-07 16:22:57"
+            "time": "2014-06-12 07:22:15"
         },
         {
             "name": "sebastian/comparator",
@@ -658,17 +823,17 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v2.5.0",
+            "version": "v2.5.2",
             "target-dir": "Symfony/Component/Yaml",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Yaml.git",
-                "reference": "b4b09c68ec2f2727574544ef0173684281a5033c"
+                "reference": "f868ecdbcc0276b6158dfbf08b9e98ce07f014e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Yaml/zipball/b4b09c68ec2f2727574544ef0173684281a5033c",
-                "reference": "b4b09c68ec2f2727574544ef0173684281a5033c",
+                "url": "https://api.github.com/repos/symfony/Yaml/zipball/f868ecdbcc0276b6158dfbf08b9e98ce07f014e1",
+                "reference": "f868ecdbcc0276b6158dfbf08b9e98ce07f014e1",
                 "shasum": ""
             },
             "require": {
@@ -703,7 +868,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "http://symfony.com",
-            "time": "2014-05-16 14:25:18"
+            "time": "2014-07-09 09:05:48"
         }
     ],
     "aliases": [
