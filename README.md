@@ -1,6 +1,6 @@
 # Serializer
 
-Serializer is a small PHP library that allows you to annotate your POPO's and serialize them into a plain array.
+Serializer is a small PHP library that allows you to annotate your POPO's and serialize them into a plain PHP array.
 
 To run the tests:
 
@@ -10,13 +10,17 @@ To generate code coverage reports:
 
     vendor/bin/phpunit --coverage-html ./reports
 
-Find Northern\Serializer on [Packagist](http://www.packagist.com/[todo])
+Find Northern\Serializer on [Packagist](https://packagist.org/packages/northern/serializer)
 
 ## Installation
 
 Install through Composer.
 
-    todo
+```javascript
+"require": {
+  "northern/serializer": "1.*"
+}
+```
 
 ## How to use
 

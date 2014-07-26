@@ -1,6 +1,6 @@
 {
     "name": "northern/serializer",
-    "description": "Serializes a complex object into a simple one.",
+    "description": "Serializes a annotated object to a plain PHP array.",
     "keywords": ["transform", "serialize", "data"],
     "homepage": "http://github.com/northern/Serializer",
     "license": "MIT",
